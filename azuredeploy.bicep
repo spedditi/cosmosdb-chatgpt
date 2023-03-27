@@ -27,7 +27,7 @@ param appServicesSkuName string = 'F1'
 param appServicesSkuCapacity int = 1
 
 @description('Enable Cosmos DB Free Tier')
-param cosmosFreeTier bool = true
+param cosmosFreeTier bool = false
 
 @description('Cosmos DB Container Throughput (<1000 for free tier)')
 param cosmosContainerThroughput int = 400
