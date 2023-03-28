@@ -42,15 +42,16 @@
     private Task Ok()
     {
         return OnClose.InvokeAsync(ReturnValue);
-    }
-
+    }       
+       
     public Task Enter(KeyboardEventArgs e)
     {
         if (e.Code == "Enter" || e.Code == "NumpadEnter")
         {
             return OnClose.InvokeAsync(ReturnValue);
         }
-        return null;
+        return Task.CompletedTask;
     }
+
 }
 
