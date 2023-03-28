@@ -27,9 +27,9 @@
     </div>
 </div>
 @code {
-    [Parameter] public string Caption { get; set; }
-    [Parameter] public string Value { get; set; }
-    [Parameter] public EventCallback<string> OnClose { get; set; }
+    [Parameter] public string? Caption { get; set; }
+    [Parameter] public string? Value { get; set; }
+    [Parameter] public EventCallback<string>? OnClose { get; set; }
 
     public string ReturnValue { get; set; }
 
