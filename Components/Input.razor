@@ -1,4 +1,4 @@
-﻿<div class="modal fade show" id="myModal" style="display:block; background-color: rgba(10,10,10,.8);" aria-modal="true" role="dialog">
+<div class="modal fade show" id="myModal" style="display:block; background-color: rgba(10,10,10,.8);" aria-modal="true" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <input class="w-100" type="text" @onkeydown="@Enter" @bind="@Value" @oninput="@((e) => { ReturnValue=(string)e.Value;})" />
+                <input class="w-100" type="text" @onkeydown="@Enter" @bind="@Value" @oninput="@((e) => { ReturnValue=e.Value?.ToString();})" />
             </div>
             <div class="modal-footer">                
                 <button type="button" class="btn btn-primary"
@@ -27,9 +27,9 @@
     </div>
 </div>
 @code {
-    [Parameter] public string? Caption { get; set; }
+    [Parameter] public string Caption { get; set; }
     [Parameter] public string? Value { get; set; }
-    [Parameter] public EventCallback<string>? OnClose { get; set; }
+    [Parameter] public EventCallback<string> OnClose { get; set; }
 
     public string? ReturnValue { get; set; }
 
@@ -39,7 +39,7 @@
     }
     private Task Ok()
     {
-        return OnClose.InvokeAsync(ReturnValue);
+        return OnClose.InvokeAsync(ReturnValue ?? "");
     }
 
 
@@ -47,8 +47,8 @@
     {
         if (e.Code == "Enter" || e.Code == "NumpadEnter")
         {
-            return OnClose.InvokeAsync(ReturnValue);
+            return OnClose.InvokeAsync(ReturnValue ?? "");
         }
-        return null;
+        return Task.CompletedTask;
     }
 }
